@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS gestionformacion;
+CREATE DATABASE gestionformacion CHARACTER SET utf8mb4;
+USE gestionformacion;
+
+CREATE TABLE usuario (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(100) UNIQUE NOT NULL,
+	password VARCHAR(20) NOT NULL
+);
