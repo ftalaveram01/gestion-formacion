@@ -2,10 +2,13 @@ package com.viewnext.gestionformacion.bussines.services.impl;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.viewnext.gestionformacion.business.model.Usuario;
 import com.viewnext.gestionformacion.bussines.services.UsuarioService;
 import com.viewnext.gestionformacion.repository.UsuarioRepository;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService{
 	
 	private UsuarioRepository usuarioRepository;
