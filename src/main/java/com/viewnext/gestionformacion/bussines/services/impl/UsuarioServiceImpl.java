@@ -1,10 +1,10 @@
-package com.viewnext.gestionformacion.services.impl;
+package com.viewnext.gestionformacion.bussines.services.impl;
 
 import java.util.Optional;
 
 import com.viewnext.gestionformacion.business.model.Usuario;
+import com.viewnext.gestionformacion.bussines.services.UsuarioService;
 import com.viewnext.gestionformacion.repository.UsuarioRepository;
-import com.viewnext.gestionformacion.services.UsuarioService;
 
 public class UsuarioServiceImpl implements UsuarioService{
 	
@@ -16,8 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public Optional<Usuario> login(String email, String password) {
-		
-		return usuarioRepository.findByEmailAndPassword(email, password);
+		return Optional.ofNullable(usuarioRepository.findByEmailAndPassword(email, password));
 	}
 
 	@Override
@@ -26,11 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 		if(usuarioRepository.existsByEmail(email))
 			throw new IllegalStateException("Existe un usuario con ese email.");
 		
-		Usuario usu1 = new Usuario();
-		usu1.setEmail(email);
-		usu1.setPassword(password);
+		Usuario usuario = new Usuario();
+		usuario.setEmail(email);
+		usuario.setPassword(password);
 		
-		Usuario guardado = usuarioRepository.save(usu1);
+		Usuario guardado = usuarioRepository.save(usuario);
 		
 		return guardado.getId();
 	}
