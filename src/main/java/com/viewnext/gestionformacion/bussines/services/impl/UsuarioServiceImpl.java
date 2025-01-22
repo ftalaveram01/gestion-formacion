@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.viewnext.gestionformacion.busines.services.UsuarioService;
 import com.viewnext.gestionformacion.business.model.Usuario;
-import com.viewnext.gestionformacion.bussines.services.UsuarioService;
 import com.viewnext.gestionformacion.integration.repository.UsuarioRepository;
 
 @Service

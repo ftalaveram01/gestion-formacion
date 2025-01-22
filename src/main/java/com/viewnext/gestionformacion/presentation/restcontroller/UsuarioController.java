@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.viewnext.gestionformacion.busines.services.UsuarioService;
 import com.viewnext.gestionformacion.business.model.Usuario;
-import com.viewnext.gestionformacion.bussines.services.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
