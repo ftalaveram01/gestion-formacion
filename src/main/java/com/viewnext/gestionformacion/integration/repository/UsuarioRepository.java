@@ -1,4 +1,4 @@
-package com.viewnext.gestionformacion.repository;
+package com.viewnext.gestionformacion.integration.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

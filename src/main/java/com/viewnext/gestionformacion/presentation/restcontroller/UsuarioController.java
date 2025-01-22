@@ -1,4 +1,4 @@
-package com.viewnext.gestionformacion.controller;
+package com.viewnext.gestionformacion.presentation.restcontroller;
 
 import java.util.Optional;
 
