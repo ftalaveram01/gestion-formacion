@@ -1,4 +1,4 @@
-package com.viewnext.gestionformacion.bussines.services.impl;
+package com.viewnext.gestionformacion.business.services.impl;
 
 import java.util.Optional;
 
