@@ -2,11 +2,8 @@ package com.viewnext.gestionformacion.presentation.restcontrollers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,20 +49,6 @@ public class UsuarioControllerTest extends AbstractControllerTest{
 
         assertEquals(201, result.getResponse().getStatus());
     }
-    
-	 @Test
-	 public void testLoginTrue() throws Exception {
-	     
-	     when(usuarioService.login(usuario.getEmail(), usuario.getPassword())).thenReturn(Optional.of(usuario));
-	     
-	     MvcResult mvcResult = mockMvc.perform(get("/usuarios/login")
-	             .param("email", usuario.getEmail())
-	             .param("password", usuario.getPassword()))
-	             .andExpect(status().isOk())
-	             .andReturn();
-	     	  
-	     assertEquals(200, mvcResult.getResponse().getStatus());
-	 }
 
     private void initObjects(){
         usuario = new Usuario();

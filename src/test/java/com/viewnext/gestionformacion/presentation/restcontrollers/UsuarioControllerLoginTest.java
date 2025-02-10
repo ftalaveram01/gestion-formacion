@@ -9,10 +9,10 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MvcResult;
 
 import com.viewnext.gestionformacion.business.model.Usuario;
 import com.viewnext.gestionformacion.business.services.UsuarioService;
@@ -20,20 +20,33 @@ import com.viewnext.gestionformacion.presentation.restcontroller.UsuarioControll
 
 @WebMvcTest(UsuarioController.class)
 public class UsuarioControllerLoginTest extends AbstractControllerTest{
-	
-	 @MockitoBean
-	 private UsuarioService usuarioService;
 
-	 private Usuario user;
+    @MockitoBean
+    private UsuarioService usuarioService;
 
-	 @SuppressWarnings("deprecation")
-	 @BeforeEach
-	 public void setup(){
-		 usuarioService = Mockito.mock(UsuarioService.class);
-		 initObject();
-	     MockitoAnnotations.initMocks(this);
+    private Usuario user;
+
+    @SuppressWarnings("deprecation")
+    @BeforeEach
+    public void setup(){
+        initObject();
+        MockitoAnnotations.initMocks(this);
+    }
+
+	 @Test
+	 public void testLoginTrue() throws Exception {
+	     
+	     when(usuarioService.login(user.getEmail(), user.getPassword())).thenReturn(Optional.of(user));
+	     
+	     MvcResult mvcResult = mockMvc.perform(get("/usuarios/login")
+	             .param("email", user.getEmail())
+	             .param("password", user.getPassword()))
+	             .andExpect(status().isOk())
+	             .andReturn();
+	     	  
+	     assertEquals(200, mvcResult.getResponse().getStatus());
 	 }
-
+    
 	 @Test
 	 public void testLoginFalse() throws Exception {
 		 when(usuarioService.login("error@gmail.com", "123456")).thenReturn(Optional.empty());
@@ -44,6 +57,7 @@ public class UsuarioControllerLoginTest extends AbstractControllerTest{
 	            .andExpect(status().isBadRequest());
 	     
 	 }
+
 	    
 	 //************************************
 	 //
