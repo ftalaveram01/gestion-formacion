@@ -13,6 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.viewnext.gestionformacion.business.model.Usuario;
 import com.viewnext.gestionformacion.business.services.UsuarioService;
 
+/**
+ * Controlador REST para gestionar los usuarios
+ */
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -23,6 +26,15 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 	
+	/**
+	 * 
+     * Este metodo permite a un usuario iniciar sesion por su email y contraseña
+     * Si son incorrectos, lanza una exception
+     *
+     * @param email
+     * @param password
+     * @return una ResponseEntity que contiene la información del usuario si el inicio de sesión es exitoso
+     */
 	@GetMapping("/login")
 	public ResponseEntity<?> login(@RequestParam(required = true) String email, @RequestParam(required = true) String password){
 		
@@ -34,6 +46,16 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuario);
 	}
 	
+	/**
+     * 
+     * Este metodo permite registrar un nuevo usuario por su email y contraseña
+     * Devuelve una ResponseEntity con la URI del nuevo usuario registrado
+     *
+     * @param email
+     * @param password
+     * @param ucb un UriComponentsBuilder para construir la URI del recurso creado
+     * @return una ResponseEntity con la URI del nuevo usuario registrado
+     */
 	@PostMapping("/registrar")
 	public ResponseEntity<?> registrar(@RequestParam(required = true) String email, @RequestParam(required = true) String password, UriComponentsBuilder ucb){
 		
