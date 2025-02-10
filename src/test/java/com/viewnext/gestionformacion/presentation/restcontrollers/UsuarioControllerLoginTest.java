@@ -34,6 +34,20 @@ public class UsuarioControllerLoginTest extends AbstractControllerTest{
     }
 
 	 @Test
+	 public void testLoginTrue() throws Exception {
+	     
+	     when(usuarioService.login(user.getEmail(), user.getPassword())).thenReturn(Optional.of(user));
+	     
+	     MvcResult mvcResult = mockMvc.perform(get("/usuarios/login")
+	             .param("email", user.getEmail())
+	             .param("password", user.getPassword()))
+	             .andExpect(status().isOk())
+	             .andReturn();
+	     	  
+	     assertEquals(200, mvcResult.getResponse().getStatus());
+	 }
+    
+	 @Test
 	 public void testLoginFalse() throws Exception {
 		 when(usuarioService.login("error@gmail.com", "123456")).thenReturn(Optional.empty());
 		 
